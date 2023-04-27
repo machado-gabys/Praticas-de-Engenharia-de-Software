@@ -1,0 +1,33 @@
+@startuml
+
+class Pessoa {
+  -nome : String
+  +Pessoa(nome: String)
+  +getNome() : String
+}
+
+class ContaCorrente {
+  -saldo : double
+  -agencia : int
+  -numero : int
+  -cliente : Pessoa
+  -extrato : ArrayList<String>
+  +ContaCorrente(numero: int, agencia: int, cliente: Pessoa)
+  -inicializarExtrato() : void
+  +getAgencia() : int
+  +getNumero() : int
+  +getSaldo() : double
+  +depositar(valor: double) : boolean
+  +sacar(valor: double) : boolean
+  +transferir(valor: double, contaDestino: ContaCorrente) : boolean
+  +getExtrato() : ArrayList<String>
+}
+
+class ATM {
+  +main(args: String[])
+}
+
+Pessoa "1" -- "1..*" ContaCorrente
+ContaCorrente "1" -- "1" ATM
+
+@enduml

@@ -1,0 +1,41 @@
+@startuml
+title Processo de Transferência
+
+actor Cliente
+participant ATM
+database Banco
+
+activate Cliente
+Cliente -> ATM: Insere cartão e senha
+activate ATM
+ATM -> ATM: Realiza autenticação
+deactivate ATM
+
+ATM -> Cliente: Mostra opções do menu
+activate Cliente
+Cliente -> ATM: Seleciona opção transferir
+deactivate Cliente
+
+ATM -> Cliente: Solicita número da conta de destino
+activate Cliente
+Cliente -> ATM: Informa número da conta de destino
+deactivate Cliente
+
+ATM -> Cliente: Solicita valor a ser transferido
+activate Cliente
+Cliente -> ATM: Informa valor a ser transferido
+deactivate Cliente
+
+ATM -> Banco: Envia solicitação de transferência
+activate Banco
+Banco -> Banco: Verifica número da conta de destino
+Banco -> Banco: Verifica saldo disponível
+Banco -> ATM: Retorna sucesso ou falha na operação
+deactivate Banco
+
+ATM -> Cliente: Exibe mensagem de sucesso ou falha na operação
+activate Cliente
+deactivate Cliente
+
+deactivate ATM
+@enduml

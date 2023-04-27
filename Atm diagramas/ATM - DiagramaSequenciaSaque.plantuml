@@ -1,0 +1,25 @@
+@startuml
+title ATM - Processo de Saque
+
+actor Usuário
+boundary ATM
+control ContaCorrente
+
+activate Usuário
+Usuário -> ATM: Seleciona opção de saque
+activate ATM
+ATM -> ContaCorrente: Chama método sacar()
+activate ContaCorrente
+ContaCorrente -> ContaCorrente: Verifica saldo
+alt saldo suficiente
+    ContaCorrente -> ContaCorrente: Realiza saque
+    ContaCorrente --> ATM: Retorna sucesso
+else saldo insuficiente
+    ContaCorrente --> ATM: Retorna erro
+end
+deactivate ContaCorrente
+ATM --> Usuário: Exibe mensagem de sucesso ou erro
+deactivate ATM
+deactivate Usuário
+@enduml
+

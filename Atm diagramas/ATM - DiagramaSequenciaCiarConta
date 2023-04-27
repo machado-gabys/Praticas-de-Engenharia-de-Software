@@ -1,0 +1,14 @@
+@startuml
+title Criar conta
+
+actor Cliente
+
+Client -> ATM : Selecionar opção 2
+ATM -> Cliente : Digitar nome do titular
+ATM -> Cliente : Digitar número da agência
+ATM -> Cliente : Digitar número da conta
+ATM -> ContaCorrente : Criar nova conta
+ContaCorrente -> ATM : Retorna a conta criada
+ATM -> Cliente : Mostra mensagem "Conta criada com sucesso"
+ATM -> Cliente : Vai para tela de realizar operações
+@enduml
